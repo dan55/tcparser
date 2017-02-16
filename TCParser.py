@@ -81,10 +81,10 @@ class TechCrunchParser():
             writer = csv.writer(csvfile, delimiter=';')
             
             # header
-            writer.writerow(['Company', 'Company Website', 'Article Title', 'Article URL'])
+            writer.writerow(['Article Title', 'Article URL', 'Company', 'Company Website'])
 
             for article in self.articles:
-                writer.writerow([article.company_name, article.company_site, article.title, article.url]) 
+                writer.writerow([article.title, article.url, article.company_name, article.company_site]) 
 
 if __name__ == '__main__':
     parser = TechCrunchParser()
