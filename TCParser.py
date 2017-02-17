@@ -6,12 +6,6 @@ from collections import namedtuple
 
 import urllib
 
-# TODO: Move to a utility/helper class
-def soupify(url):
-    ''' Return a BeautifulSoup object given a url '''
-
-    return BeautifulSoup(urllib.request.urlopen(url))
-
 class TechCrunchParser():
     def __init__(self, homepage='https://techcrunch.com/'):
         self.homepage = homepage
@@ -24,7 +18,7 @@ class TechCrunchParser():
             # TODO: add pagination handling
             pass
 
-        homepage = soupify(url=self.homepage)
+        homepage = TechCrunchParser.soupify(url=self.homepage)
 
         return homepage.find_all(class_='post-title')
 
@@ -66,7 +60,7 @@ class TechCrunchParser():
             TODO: Improve error handling? 
         '''
 
-        article = soupify(article_url)
+        article = TechCrunchParser.soupify(article_url)
 
         card = article.find(class_='data-card')
         card_links = card.find('a')
@@ -93,11 +87,11 @@ class TechCrunchParser():
             writer.writerow(['Article Title', 'Article URL', 'Company', 'Company Website'])
 
             for article in self.articles:
-                writer.writerow([article.title, article.url, article.company_name, article.company_site]) 
+                writer.writerow([article.title, article.url, article.company_name, article.company_site])
 
-if __name__ == '__main__':
-    parser = TechCrunchParser()
+    # TODO: Move to a utility/helper class
+    @staticmethod
+    def soupify(url):
+        ''' Return a BeautifulSoup object given a url '''
 
-    parser.get_articles()
-    
-    parser.write_csv()
+        return BeautifulSoup(urllib.request.urlopen(url))

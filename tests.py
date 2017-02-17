@@ -4,7 +4,7 @@ import unittest
 from bs4 import BeautifulSoup
 
 from Article import Article
-from TCParser import TechCrunchParser, soupify
+from TCParser import TechCrunchParser
 
 class ParserTest(unittest.TestCase):
     def setUp(self):
