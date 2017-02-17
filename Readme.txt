@@ -1,6 +1,12 @@
 Overview:
 
-Creates a CSV file containing the titles and URLs of the 20 "latest" articles on TechCrunch's homepage. 
+    
+    Creates a CSV file containing the titles and URLs of the 20 "latest" articles on TechCrunch's homepage. It 
+
+includes the company the article concerns by scraping the "card" on the right-hand of the article. If none 
+
+exists, company information is recorded as 'n/a'.
+
 
 
 Files:
@@ -17,6 +23,8 @@ Files:
 
 
 
-Most major problem:
+Major TODO:
 
-Does not handle multiple entities on a card (person and company etc.)
+    There is occasionally a card with multiple entities (not just the company), and the parser chooses the 
+
+wrong entity. 
