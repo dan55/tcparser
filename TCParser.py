@@ -29,6 +29,8 @@ class TechCrunchParser():
         return homepage.find_all(class_='post-title')
 
     def get_article(self, title, url):
+        ''' Return an Article object after examining the article for company information '''
+
         try:
             company_url, company_name = self.parse_article(url)
             article = Article(title, url, company_name, company_url) 
@@ -38,6 +40,8 @@ class TechCrunchParser():
         return article
     
     def get_articles(self):
+        ''' Store the articles (to be written to CSV for now) '''
+
         for stub in self.get_article_stubs():
             article_url, article_title = self.parse_stub(stub)
 
@@ -46,7 +50,7 @@ class TechCrunchParser():
             self.articles.append(article)
 
     def parse_stub(self, article_stub):
-        ''' Return an Article object from a TechCrunch article '''
+        ''' Parse an article stub for url to full article and title '''
 
         link_to_full_article = article_stub.find('a')
 
@@ -56,6 +60,11 @@ class TechCrunchParser():
         return (url, title)
 
     def parse_article(self, article_url):
+        ''' Attempt to extract company information from article. 
+            If not present bs4 raises AttributeError.
+
+            TODO: Improve error handling? 
+        '''
 
         article = soupify(article_url)
 
