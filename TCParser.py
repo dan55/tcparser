@@ -87,7 +87,7 @@ class TechCrunchParser():
         filemode = 'w' # create or overwrite
 
         with open(filename, filemode) as csvfile:
-            writer = csv.writer(csvfile, delimiter=';')
+            writer = csv.writer(csvfile, delimiter=',')
             
             # header
             writer.writerow(['Article Title', 'Article URL', 'Company', 'Company Website'])
